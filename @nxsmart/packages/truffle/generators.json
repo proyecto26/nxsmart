@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "truffle",
+  "version": "0.0.1",
+  "generators": {
+    "truffle": {
+      "factory": "./src/generators/truffle/generator",
+      "schema": "./src/generators/truffle/schema.json",
+      "description": "truffle generator"
+    }
+  }
+}

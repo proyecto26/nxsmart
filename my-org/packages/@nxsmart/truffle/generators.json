@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "@nxsmart-truffle",
+  "version": "0.0.1",
+  "generators": {
+    "@nxsmart-truffle": {
+      "factory": "./src/generators/@nxsmart-truffle/generator",
+      "schema": "./src/generators/@nxsmart-truffle/schema.json",
+      "description": "@nxsmart-truffle generator"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "version": 2,
+  "projects": {
+    "truffle": {
+      "root": "packages/truffle",
+      "sourceRoot": "packages/truffle/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/truffle/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/truffle"],
+          "options": {
+            "jestConfig": "packages/truffle/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/truffle",
+            "tsConfig": "packages/truffle/tsconfig.lib.json",
+            "packageJson": "packages/truffle/package.json",
+            "main": "packages/truffle/src/index.ts",
+            "assets": [
+              "packages/truffle/*.md",
+              {
+                "input": "./packages/truffle/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/truffle/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/truffle",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/truffle",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "truffle-e2e": {
+      "root": "e2e/truffle-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/truffle-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "truffle:build",
+            "jestConfig": "e2e/truffle-e2e/jest.config.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
+}
